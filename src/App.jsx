@@ -25,6 +25,7 @@ function App() {
         formData
       );
       console.log(response.data.message);
+      alert(response.data.message);
     } catch (error) {
       console.error("Error applying for the job:", error);
     }
