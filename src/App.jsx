@@ -10,6 +10,10 @@ function App() {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     // Form data handle karne ke liye
+    if (!jobTitle || !location || !resume) {
+      alert("Please fill all fields!");
+      return;
+    } // Form validation
     try {
       const formData = new FormData();
       formData.append("jobTitle", jobTitle);
