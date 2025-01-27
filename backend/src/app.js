@@ -13,10 +13,18 @@ app.post('/apply', upload.single('resume'), (req, res) => {
   const { jobTitle, location } = req.body;
   console.log('Job Title:', jobTitle || 'Not received');
   console.log('Location:', location || 'Not received');
-  // Resume handling baad mein add karenge
   console.log('Resume:', req.file ? req.file.originalname : 'No file uploaded');
-
-  res.send({ message: 'Job data received!' });
+  // Resume handling baad mein add karenge
+  try {
+    const { jobTitle, location } = req.body;
+    if (!jobTitle || !location) {
+      return res.status(400).json({ error: 'All fields are required' });
+    }
+    console.log('Received:', { jobTitle, location });
+    res.send({ message: 'Job data received!' });
+  } catch (error) {
+    res.status(500).send({ error: 'Server error' });
+  }
 });
 
 const PORT = 5000;
