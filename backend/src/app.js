@@ -1,15 +1,20 @@
 const express = require('express');
 const cors = require('cors');
+const multer = require('multer');
+const upload = multer(); // for handling form-data
+
 const app = express();
 
 app.use(cors()); // Client aur server ko connect karne ke liye
 app.use(express.json()); // JSON data handle karne ke liye
+app.use(express.urlencoded({ extended : true })); // this line to handle form submission
 
-app.post('/apply', (req, res) => {
-  const { jobTitle, location, resume } = req.body;
-  console.log('Job Title:', jobTitle);
-  console.log('Location:', location);
+app.post('/apply', upload.single('resume'), (req, res) => {
+  const { jobTitle, location } = req.body;
+  console.log('Job Title:', jobTitle || 'Not received');
+  console.log('Location:', location || 'Not received');
   // Resume handling baad mein add karenge
+  console.log('Resume:', req.file ? req.file.originalname : 'No file uploaded');
 
   res.send({ message: 'Job data received!' });
 });
