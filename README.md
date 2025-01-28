@@ -1,4 +1,4 @@
-![image](../auto-apply-job-app/src/assets/output.png)
+![image](https://github.com/ankush07-in/Auto-JOB-Apply/blob/main/src/assets/output.png?raw=true)
 # Auto-Apply Job Application
 
 This project automates the job application process by using Puppeteer to interact with job portals like Indeed. The frontend is built with React and Vite, and the backend is powered by Express.js.
